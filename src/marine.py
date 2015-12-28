@@ -27,12 +27,16 @@ class Marine(pygame.sprite.Sprite):
             if move[1] + self.rect[1] + self.rect[3] > self.h or move[1] + self.rect[1] < 0:
                 move[1] = 0
             self.rect = self.rect.move(move)
+        self.do_recharge()
+        pygame.event.pump()
+        
+    def do_recharge(self):
         if self.puissance > 0 and self.munition < self.recharge and time.time() - self.last_recharge > self.time_recharge:
             self.last_recharge = time.time()
             self.munition = self.munition + 1
-            print "recharge", self
-                 
-        pygame.event.pump()
+        
+    def double_click(self):
+        pass
 
     def change_direction(self, dx, dy):
         norm = math.sqrt(dx*dx + dy*dy)

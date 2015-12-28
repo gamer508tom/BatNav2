@@ -45,7 +45,10 @@ while running:
 			pos = pygame.mouse.get_pos()
 			clicked_sprites = [s for s in player1 if s.rect.collidepoint(pos)]
 			for i in clicked_sprites:
-				selected = i
+				if i == selected:
+					selected.double_click()
+				else:
+					selected = i
 				print "selected object:", i
 				
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == MIDDLE:
@@ -72,15 +75,21 @@ while running:
 				pass
 			else:
 				obj = selected
-				pos = obj.rect
-				dx = event.pos[0] - pos[0]
-				dy = event.pos[1] - pos[1]
-				obj.change_direction(dx, dy)
-				print "new object direction:", obj.direction
+				if obj.rect.collidepoint(event.pos):
+					obj.direction = None
+				else:
+					dx = event.pos[0] - obj.rect.centerx
+					dy = event.pos[1] - obj.rect.centery
+					obj.change_direction(dx, dy)
+					print "new object direction:", obj.direction
 	player1.update()
 	missiles.update()
-	d = pygame.sprite.groupcollide(player1, missiles, False, False)
 	# Process collisions
+	d = pygame.sprite.groupcollide(missiles, missiles, False, False)
+	for m in d.keys():
+		if len(d[m]) > 1:
+			m.kill()
+	d = pygame.sprite.groupcollide(player1, missiles, False, False)
 	for nav in d.keys():
 		for m in d[nav]:
 			nav_killed = nav.receive_missile(m)
