@@ -85,9 +85,9 @@ while running:
 		for m in d[nav]:
 			nav_killed = nav.receive_missile(m)
 			if nav_killed:
-				nav.kill()
-				if selected == nav_killed:
+				if selected == nav:
 					selected = None
+				nav.kill()
 	screen.fill((255, 255, 255))             #wipes the screen
 	player1.draw(screen)           #draws every Sprite object in this Group
 	missiles.draw(screen)
