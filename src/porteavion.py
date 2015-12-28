@@ -3,6 +3,7 @@ import pygame
 import time
 from marine import Marine
 from avion import Avion
+from missile import Missile
 
 class PorteAvion(Marine):
     def __init__(self, w, h, position):
@@ -31,4 +32,11 @@ class PorteAvion(Marine):
     def double_click(self):
         self.launch()
         
+    def touch_by_missile(self, m):
+        if m.tireur == self:
+            return False
+        else:
+            return True
 
+    def create_missile(self, direction):        
+        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self, True)

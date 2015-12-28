@@ -4,7 +4,7 @@ import math
 from marine import Marine
 
 class Missile(Marine):
-    def __init__(self, w, h, position, direction, puissance, tireur):
+    def __init__(self, w, h, position, direction, puissance, tireur, aerien):
         self.image = pygame.image.load('../img/missile.png').convert()
         Marine.__init__(self, w, h, position)
         self.vitesse = 2.5
@@ -12,6 +12,7 @@ class Missile(Marine):
         self.puissance = puissance
         self.change_direction(direction[0], direction[1])
         self.tireur = tireur
+        self.aerien = aerien
 
     def update(self):
         if self.direction is not None:

@@ -30,60 +30,30 @@ player1 = Player(name, color, position, flotte, w, h)
 
 missiles = pygame.sprite.Group()
 
-#spriteGroup = pygame.sprite.Group()
-#spriteGroup.add(marine.Marine(w, h, [10, 10]))
-
 selected = None
 
 while running:
+	# Handle events
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			running = 0			
 			
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == LEFT:
 			print "You pressed the left mouse button at (%d, %d)" % event.pos
-			pos = pygame.mouse.get_pos()
-			clicked_sprites = [s for s in player1 if s.rect.collidepoint(pos)]
-			for i in clicked_sprites:
-				if i == selected:
-					selected.double_click()
-				else:
-					selected = i
-				print "selected object:", i
+			player1.left_click(event.pos)
 				
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == MIDDLE:
 			print "You pressed the middle mouse button at (%d, %d)" % event.pos
-			if selected is None:
-				print "First select an object"
-				pass
-			else:
-				boat = selected
-				puissance = boat.puissance
-				if puissance > 0:
-					if boat.fire():						
-						boat_pos = selected.rect					
-						dx = event.pos[0] - boat_pos.centerx
-						dy = event.pos[1] - boat_pos.centery
-						direction = [dx, dy]
-						missile = Missile(w, h, [boat_pos.centerx, boat_pos.centery], direction, puissance, selected)
-						missiles.add(missile)
+			player1.middle_click(event.pos, missiles)
             
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
 			print "You pressed the right mouse button at (%d, %d)" % event.pos
-			if selected is None:
-				print "First select an object"
-				pass
-			else:
-				obj = selected
-				if obj.rect.collidepoint(event.pos):
-					obj.direction = None
-				else:
-					dx = event.pos[0] - obj.rect.centerx
-					dy = event.pos[1] - obj.rect.centery
-					obj.change_direction(dx, dy)
-					print "new object direction:", obj.direction
+			player1.right_click(event.pos)
+			
+	# Updates
 	player1.update()
 	missiles.update()
+	
 	# Process collisions
 	d = pygame.sprite.groupcollide(missiles, missiles, False, False)
 	for m in d.keys():
@@ -94,11 +64,13 @@ while running:
 		for m in d[nav]:
 			nav_killed = nav.receive_missile(m)
 			if nav_killed:
-				if selected == nav:
-					selected = None
+				if player1.selection == nav:
+					player1.selection = None
 				nav.kill()
-	screen.fill((255, 255, 255))             #wipes the screen
-	player1.draw(screen)           #draws every Sprite object in this Group
+	
+	# Draw
+	screen.fill((255, 255, 255))
+	player1.draw(screen)
 	missiles.draw(screen)
 	pygame.display.flip()
 	clock.tick(40)

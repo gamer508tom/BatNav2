@@ -10,3 +10,9 @@ class Explorateur(Marine):
         self.vitesse = 1.5
         self.discretion = 0
         self.puissance = 0
+        
+    def touch_by_missile(self, m):
+        if m.tireur == self:
+            return False
+        else:
+            return True

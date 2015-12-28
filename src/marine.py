@@ -33,7 +33,7 @@ class Marine(pygame.sprite.Sprite):
     def do_recharge(self):
         if self.puissance > 0 and self.munition < self.recharge and time.time() - self.last_recharge > self.time_recharge:
             self.last_recharge = time.time()
-            self.munition = self.munition + 1
+            self.munition = self.munition + 1        
         
     def double_click(self):
         pass
@@ -43,10 +43,14 @@ class Marine(pygame.sprite.Sprite):
         self.direction = [dx/norm, dy/norm]
         self.state = "moving"
 
+    def create_missile(self, direction):
+        return None
+        
+    def touch_by_missile(self, m):
+        pass
+        
     def receive_missile(self, m):
-        if m.tireur == self:
-            return False
-        else:
+        if self.touch_by_missile(m):
             self.vie = self.vie - m.puissance
             m.kill()
             if self.vie < 1:
