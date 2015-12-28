@@ -83,9 +83,11 @@ while running:
 	# Process collisions
 	for nav in d.keys():
 		for m in d[nav]:
-			explosion = nav.receive_missile(m)
-			if explosion:
-				m.kill()
+			nav_killed = nav.receive_missile(m)
+			if nav_killed:
+				nav.kill()
+				if selected == nav_killed:
+					selected = None
 	screen.fill((255, 255, 255))             #wipes the screen
 	player1.draw(screen)           #draws every Sprite object in this Group
 	missiles.draw(screen)

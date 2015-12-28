@@ -44,9 +44,12 @@ class Marine(pygame.sprite.Sprite):
             return False
         else:
             self.vie = self.vie - m.puissance
+            m.kill()
             if self.vie < 1:
                 self.kill()
-            return True
+                return True
+            else:
+                return False
             
     def fire(self):
         if self.munition > 0:
