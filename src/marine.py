@@ -42,9 +42,6 @@ class Marine(pygame.sprite.Sprite):
         norm = math.sqrt(dx*dx + dy*dy)
         self.direction = [dx/norm, dy/norm]
         self.state = "moving"
-
-    def create_missile(self, direction):
-        return None
         
     def touch_by_missile(self, m):
         pass

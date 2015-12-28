@@ -16,12 +16,12 @@ class Croiseur(Marine):
         self.time_recharge = 5
         self.last_recharge = time.time()
         self.munition = 10
-
-    def create_missile(self, direction):        
-        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self, True)
         
     def touch_by_missile(self, m):
         if m.tireur == self:
             return False
         else:
             return True
+
+    def create_missile(self, direction):        
+        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self)

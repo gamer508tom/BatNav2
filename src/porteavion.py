@@ -19,13 +19,23 @@ class PorteAvion(Marine):
         self.munition = 10
         
         self.n_avions = 1
+        self.avion = None
         
+    def update(self):
+        Marine.update(self)
+        if self.avion is not None:
+            if self.avion.rect.colliderect(self.rect):
+                self.avion.kill()
+                self.avion = None
+                self.n_avions = self.n_avions + 1
+                
     def launch(self):
         if self.n_avions > 0:
             self.n_avions = self.n_avions - 1
-            avion = Avion(self.w, self.h, [self.rect[0], self.rect[1]])
+            avion = Avion(self.w, self.h, [self.rect[0] + 140, self.rect[1] + 10], [1., 0.])
             for g in self.groups():
                 g.add(avion)
+                self.avion = avion
         else:
             return False
             
@@ -37,6 +47,6 @@ class PorteAvion(Marine):
             return False
         else:
             return True
-
+            
     def create_missile(self, direction):        
-        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self, True)
+        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self)
