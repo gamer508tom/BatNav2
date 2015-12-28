@@ -84,8 +84,6 @@ while running:
 	for nav in d.keys():
 		for m in d[nav]:
 			explosion = nav.receive_missile(m)
-			if nav.vie < 1:
-				selected = None
 			if explosion:
 				m.kill()
 	screen.fill((255, 255, 255))             #wipes the screen
