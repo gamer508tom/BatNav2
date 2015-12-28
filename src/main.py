@@ -60,9 +60,8 @@ while running:
 					dx = event.pos[0] - boat_pos[0]
 					dy = event.pos[1] - boat_pos[1]
 					direction = [dx, dy]
-					missile = Missile(w, h, position, direction, puissance)
+					missile = Missile(w, h, [boat_pos[0], boat_pos[1]], direction, puissance)
 					missiles.add(missile)
-					print "new object direction:", obj.direction
             
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
 			print "You pressed the right mouse button at (%d, %d)" % event.pos
@@ -80,5 +79,6 @@ while running:
 	missiles.update()
 	screen.fill((255, 255, 255))             #wipes the screen
 	player1.draw(screen)           #draws every Sprite object in this Group
+	missiles.draw(screen)
 	pygame.display.flip()
 	clock.tick(40)
