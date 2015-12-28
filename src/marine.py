@@ -33,3 +33,12 @@ class Marine(pygame.sprite.Sprite):
         norm = math.sqrt(dx*dx + dy*dy)
         self.direction = [dx/norm, dy/norm]
         self.state = "moving"
+
+    def receive_missile(self, m):
+        if m.tireur == self:
+            return False
+        else:
+            self.vie = self.vie - m.puissance
+            if self.vie < 1:
+                self.kill()
+            return True

@@ -60,7 +60,7 @@ while running:
 					dx = event.pos[0] - boat_pos[0]
 					dy = event.pos[1] - boat_pos[1]
 					direction = [dx, dy]
-					missile = Missile(w, h, [boat_pos[0], boat_pos[1]], direction, puissance)
+					missile = Missile(w, h, [boat_pos.centerx, boat_pos.centery], direction, puissance, selected)
 					missiles.add(missile)
             
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
@@ -77,6 +77,15 @@ while running:
 				print "new object direction:", obj.direction
 	player1.update()
 	missiles.update()
+	d = pygame.sprite.groupcollide(player1, missiles, False, False)
+	# Process collisions
+	for nav in d.keys():
+		for m in d[nav]:
+			explosion = nav.receive_missile(m)
+			if nav.vie < 1:
+				selected = None
+			if explosion:
+				m.kill()
 	screen.fill((255, 255, 255))             #wipes the screen
 	player1.draw(screen)           #draws every Sprite object in this Group
 	missiles.draw(screen)
