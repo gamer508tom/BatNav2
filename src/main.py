@@ -59,8 +59,8 @@ while running:
 				if puissance > 0:
 					if boat.fire():						
 						boat_pos = selected.rect					
-						dx = event.pos[0] - boat_pos[0]
-						dy = event.pos[1] - boat_pos[1]
+						dx = event.pos[0] - boat_pos.centerx
+						dy = event.pos[1] - boat_pos.centery
 						direction = [dx, dy]
 						missile = Missile(w, h, [boat_pos.centerx, boat_pos.centery], direction, puissance, selected)
 						missiles.add(missile)
