@@ -1,5 +1,6 @@
  
 import pygame
+import time
 from marine import Marine
 
 class Submersible(Marine):
@@ -11,3 +12,7 @@ class Submersible(Marine):
         self.discretion = 0
         self.puissance = 3
         self.recharge = 10
+        self.time_recharge = 5
+        self.last_recharge = time.time()
+        self.munition = 10
+

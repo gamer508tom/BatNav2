@@ -1,5 +1,6 @@
 
 import pygame
+import time
 from marine import Marine
 
 class PorteAvion(Marine):
@@ -11,3 +12,7 @@ class PorteAvion(Marine):
         self.discretion = 0
         self.puissance = 2
         self.recharge = 10
+        self.time_recharge = 5
+        self.last_recharge = time.time()
+        self.munition = 10
+

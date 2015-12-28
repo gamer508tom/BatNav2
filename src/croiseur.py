@@ -1,4 +1,5 @@
 
+import time
 import pygame
 from marine import Marine
 
@@ -10,3 +11,7 @@ class Croiseur(Marine):
         self.vitesse = 0.5
         self.discretion = 0
         self.puissance = 4
+        self.recharge = 10
+        self.time_recharge = 5
+        self.last_recharge = time.time()
+        self.munition = 10

@@ -1,5 +1,6 @@
 import pygame
 import math
+import time
 
 class Marine(pygame.sprite.Sprite):
     def __init__(self, w, h, position):
@@ -26,7 +27,11 @@ class Marine(pygame.sprite.Sprite):
             if move[1] + self.rect[1] + self.rect[3] > self.h or move[1] + self.rect[1] < 0:
                 move[1] = 0
             self.rect = self.rect.move(move)
-            #print move        
+        if self.puissance > 0 and self.munition < self.recharge and time.time() - self.last_recharge > self.time_recharge:
+            self.last_recharge = time.time()
+            self.munition = self.munition + 1
+            print "recharge", self
+                 
         pygame.event.pump()
 
     def change_direction(self, dx, dy):
@@ -42,3 +47,10 @@ class Marine(pygame.sprite.Sprite):
             if self.vie < 1:
                 self.kill()
             return True
+            
+    def fire(self):
+        if self.munition > 0:
+            self.munition = self.munition - 1
+            return True
+        else:
+            return False

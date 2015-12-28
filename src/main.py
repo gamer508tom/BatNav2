@@ -54,14 +54,16 @@ while running:
 				print "First select an object"
 				pass
 			else:
-				puissance = selected.puissance
+				boat = selected
+				puissance = boat.puissance
 				if puissance > 0:
-					boat_pos = selected.rect
-					dx = event.pos[0] - boat_pos[0]
-					dy = event.pos[1] - boat_pos[1]
-					direction = [dx, dy]
-					missile = Missile(w, h, [boat_pos.centerx, boat_pos.centery], direction, puissance, selected)
-					missiles.add(missile)
+					if boat.fire():						
+						boat_pos = selected.rect					
+						dx = event.pos[0] - boat_pos[0]
+						dy = event.pos[1] - boat_pos[1]
+						direction = [dx, dy]
+						missile = Missile(w, h, [boat_pos.centerx, boat_pos.centery], direction, puissance, selected)
+						missiles.add(missile)
             
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
 			print "You pressed the right mouse button at (%d, %d)" % event.pos
