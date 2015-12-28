@@ -57,8 +57,10 @@ while running:
 	# Process collisions
 	d = pygame.sprite.groupcollide(missiles, missiles, False, False)
 	for m in d.keys():
-		if len(d[m]) > 1:
-			m.kill()
+		for m2 in d[m]:
+			if (not m == m2) and ((m.aerien and m2.aerien) or (not m.aerien and not m2.aerien)):
+				m.kill()
+				break
 	d = pygame.sprite.groupcollide(player1, missiles, False, False)
 	for nav in d.keys():
 		for m in d[nav]:

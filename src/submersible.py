@@ -21,7 +21,7 @@ class Submersible(Marine):
         return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self, False)
                 
     def touch_by_missile(self, m):
-        if m.tireur == self or m.aerien:
+        if m.tireur == self:
             return False
         else:
             return True
