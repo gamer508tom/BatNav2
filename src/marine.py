@@ -6,7 +6,6 @@ class Marine(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.w = w
         self.h = h
-        self.image = pygame.image.load('../img/croiseur.png').convert()
         self.rect = self.image.get_rect()
         self.state = "still"
         self.direction = None

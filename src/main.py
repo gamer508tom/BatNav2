@@ -8,8 +8,11 @@ from porteavion import PorteAvion
 from submersible import Submersible
 from explorateur import Explorateur
 
+from missile import Missile
+
 
 LEFT = 1
+MIDDLE = 2
 RIGHT = 3
 w, h = (1600, 900)
 screen = pygame.display.set_mode((w, h))
@@ -20,10 +23,12 @@ name = 'player1'
 color = 'blue'
 position = [30, 30]
 flotte = [{'type':Croiseur, 'position':[0, 50]},
-			{'type':Croiseur, 'position':[0, 100]},
-			{'type':Croiseur, 'position':[0, 150]},
-			{'type':Croiseur, 'position':[0, 200]}]
+			{'type':Submersible, 'position':[0, 100]},
+			{'type':Explorateur, 'position':[0, 150]},
+			{'type':PorteAvion, 'position':[0, 200]}]
 player1 = Player(name, color, position, flotte, w, h)
+
+missiles = pygame.sprite.Group()
 
 #spriteGroup = pygame.sprite.Group()
 #spriteGroup.add(marine.Marine(w, h, [10, 10]))
@@ -42,6 +47,22 @@ while running:
 			for i in clicked_sprites:
 				selected = i
 				print "selected object:", i
+				
+		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == MIDDLE:
+			print "You pressed the middle mouse button at (%d, %d)" % event.pos
+			if selected is None:
+				print "First select an object"
+				pass
+			else:
+				puissance = selected.puissance
+				if puissance > 0:
+					boat_pos = selected.rect
+					dx = event.pos[0] - boat_pos[0]
+					dy = event.pos[1] - boat_pos[1]
+					direction = [dx, dy]
+					missile = Missile(w, h, position, direction, puissance)
+					missiles.add(missile)
+					print "new object direction:", obj.direction
             
 		elif event.type == pygame.MOUSEBUTTONDOWN and event.button == RIGHT:
 			print "You pressed the right mouse button at (%d, %d)" % event.pos
@@ -56,6 +77,7 @@ while running:
 				obj.change_direction(dx, dy)
 				print "new object direction:", obj.direction
 	player1.update()
+	missiles.update()
 	screen.fill((255, 255, 255))             #wipes the screen
 	player1.draw(screen)           #draws every Sprite object in this Group
 	pygame.display.flip()
