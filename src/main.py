@@ -1,6 +1,7 @@
 import pygame
 import marine
 import math
+import sys
 from player import Player
 
 from croiseur import Croiseur
@@ -17,6 +18,8 @@ MIDDLE = 2
 RIGHT = 3
 w, h = (1600, 900)
 screen = pygame.display.set_mode((w, h))
+bg = pygame.image.load("../img/font.png")
+screen.blit(bg,(0,0))
 clock = pygame.time.Clock()
 running = 1
 
