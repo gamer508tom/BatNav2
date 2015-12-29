@@ -7,6 +7,7 @@ from croiseur import Croiseur
 from porteavion import PorteAvion
 from submersible import Submersible
 from explorateur import Explorateur
+from pirate import Pirate
 
 from missile import Missile
 
@@ -22,10 +23,12 @@ running = 1
 name = 'player1'
 color = 'blue'
 position = [30, 30]
-flotte = [{'type':Croiseur, 'position':[0, 50]},
-			{'type':Submersible, 'position':[0, 100]},
+flotte = [{'type':Croiseur, 'position':[0, 18]},
+			{'type':Submersible, 'position':[0, 102]},
 			{'type':Explorateur, 'position':[0, 150]},
-			{'type':PorteAvion, 'position':[0, 200]}]
+			{'type':PorteAvion, 'position':[0, 200]},
+			{'type':Croiseur, 'position':[0, 250]},
+                        {'type':Pirate, 'position':[0, 300]}]
 player1 = Player(name, color, position, flotte, w, h)
 
 missiles = pygame.sprite.Group()
