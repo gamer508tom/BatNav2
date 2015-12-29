@@ -77,7 +77,7 @@ while running:
 				nav.kill()
 	
 	# Draw
-	screen.fill((255, 255, 255))
+	screen.blit(bg,(0,0))
 	player1.draw(screen)
 	missiles.draw(screen)
 	pygame.display.flip()
