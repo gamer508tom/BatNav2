@@ -22,6 +22,8 @@ bg = pygame.image.load("../img/font.png")
 screen.blit(bg,(0,0))
 clock = pygame.time.Clock()
 running = 1
+pygame.mixer.init()
+boom = pygame.mixer.Sound ("../sound/boom.wav")
 
 name = 'player1'
 color = 'blue'
@@ -66,7 +68,7 @@ while running:
 		for m2 in d[m]:
 			if (not m == m2):
 				m.kill()
-				break
+                                
 	d = pygame.sprite.groupcollide(player1, missiles, False, False)
 	for nav in d.keys():
 		for m in d[nav]:
@@ -74,7 +76,9 @@ while running:
 			if nav_killed:
 				if player1.selection == nav:
 					player1.selection = None
+				boom.play()
 				nav.kill()
+				
 	
 	# Draw
 	screen.blit(bg,(0,0))
