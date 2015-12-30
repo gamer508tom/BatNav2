@@ -67,7 +67,7 @@ def adapt_to_socket(group):
 	for i in group:
 		#print i
 		i.image = None
-	return [(i.__class__, i.rect, i.direction) for i in group]
+	return [(i.__class__.__name__, i.rect, i.direction) for i in group]
 
 change = dict(player1=False, 
 				player2 = False)

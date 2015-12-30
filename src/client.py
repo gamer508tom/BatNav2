@@ -4,6 +4,14 @@ import os,sys
 sys.path.append(os.path.split(sys.path[0])[0])
 from Net import *
 
+from croiseur import Croiseur
+from porteavion import PorteAvion
+from submersible import Submersible
+from explorateur import Explorateur
+from pirate import Pirate
+from missile import Missile
+
+
 cont = True
 while cont:
     name = raw_input("What is your name?  ")
@@ -79,7 +87,21 @@ def Draw():
                 vue_changed = False
                 print "-----------re build vue", vue_changed
                 draw_group = pygame.sprite.Group()
-                for cls, rect, direction in vue:
+                for cls_name, rect, direction in vue:
+                    if cls_name == "Avion":
+                        cls = Avion
+                    elif cls_name == "Croiseur":
+                        cls = Croiseur
+                    elif cls_name == "Explorateur":
+                        cls = Explorateur
+                    elif cls_name == "PorteAvion":
+                        cls = PorteAvion
+                    elif cls_name == "Submersible":
+                        cls = Submersible
+                    elif cls_name == "Missile":
+                        cls = Missile
+                    elif cls_name == "Pirate":
+                        cls = Pirate
                     draw_group.add(cls(w, h, [rect[0], rect[1]], direction))
             draw_group.update()
             draw_group.draw(screen)
