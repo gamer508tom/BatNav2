@@ -16,6 +16,7 @@ class Marine(pygame.sprite.Sprite):
         self.offset = [0., 0.]
 
     def update(self):
+        #print "marine update", self
         if self.direction is not None:
             move = [0., 0.]
             move[0] = self.vitesse * self.direction[0] + self.offset[0]
@@ -27,6 +28,7 @@ class Marine(pygame.sprite.Sprite):
             if move[1] + self.rect[1] + self.rect[3] > self.h or move[1] + self.rect[1] < 0:
                 move[1] = 0
             self.rect = self.rect.move(move)
+            #print "marine new rect", self.rect
         self.do_recharge()
         pygame.event.pump()
         
@@ -52,9 +54,11 @@ class Marine(pygame.sprite.Sprite):
             m.kill()
             if self.vie < 1:
                 self.kill()
-                return True
+                return True, True
             else:
-                return False
+                return False, True
+        else:
+            return False, False
             
     def fire(self):
         if self.munition > 0:

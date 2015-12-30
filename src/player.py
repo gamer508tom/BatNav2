@@ -13,8 +13,9 @@ class Player(pygame.sprite.Group):
         self.h = h
 
     def left_click(self, pos):
-        pos = pygame.mouse.get_pos()
+        print "player", self.name, "left", pos
         clicked_sprites = [s for s in self if s.rect.collidepoint(pos)]
+        print "clicked sprites", clicked_sprites
         for i in clicked_sprites:
             if i == self.selection:
                 i.double_click()
@@ -23,6 +24,7 @@ class Player(pygame.sprite.Group):
             print "selected object:", i
         
     def middle_click(self, pos, missiles):
+        print "player", self.name, "middle", pos
         if self.selection is None:
             print "First select an object"
             pass
@@ -39,14 +41,17 @@ class Player(pygame.sprite.Group):
                     missiles.add(missile)
         
     def right_click(self, pos):
+        print "player", self.name, "right", pos
         if self.selection is None:
             pass
+            print "first select an object"
         else:
             obj = self.selection
             if obj.rect.collidepoint(pos):
                 obj.direction = None
+                print "stop object"
             else:
                 dx = pos[0] - obj.rect.centerx
                 dy = pos[1] - obj.rect.centery
                 obj.change_direction(dx, dy)
-                print "new object direction:", obj.direction
+                print "new object direction:", obj.direction, obj, obj.groups()

@@ -6,7 +6,7 @@ from avion import Avion
 from missile import Missile
 
 class PorteAvion(Marine):
-    def __init__(self, w, h, position):
+    def __init__(self, w, h, position, direction=None):
         self.image = pygame.image.load('../img/porteavion.jpg').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 5
@@ -17,6 +17,7 @@ class PorteAvion(Marine):
         self.time_recharge = 5
         self.last_recharge = time.time()
         self.munition = 10
+        self.direction = direction
         
         self.n_avions = 1
         self.avion = None

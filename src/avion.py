@@ -6,7 +6,7 @@ from missile import Missile
 from submersible import Submersible
 
 class Avion(Marine):
-    def __init__(self, w, h, position, direction):
+    def __init__(self, w, h, position, direction=None):
         self.image = pygame.image.load('../img/avion.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 20

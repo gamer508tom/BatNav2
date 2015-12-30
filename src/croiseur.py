@@ -5,7 +5,7 @@ from marine import Marine
 from missile import Missile
 
 class Croiseur(Marine):
-    def __init__(self, w, h, position):
+    def __init__(self, w, h, position, direction=None):
         self.image = pygame.image.load('../img/croiseur.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 6
@@ -16,6 +16,7 @@ class Croiseur(Marine):
         self.time_recharge = 5
         self.last_recharge = time.time()
         self.munition = 10
+        self.direction = direction
         
     def touch_by_missile(self, m):
         if m.tireur == self:

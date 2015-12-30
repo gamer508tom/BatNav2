@@ -3,11 +3,9 @@ import pygame
 import time
 from marine import Marine
 from missile import Missile
-from croiseur import Croiseur
-import porteavion
 
 class Submersible(Marine):
-    def __init__(self, w, h, position):
+    def __init__(self, w, h, position, direction=None):
         self.image = pygame.image.load('../img/submersible.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 6
@@ -18,9 +16,10 @@ class Submersible(Marine):
         self.time_recharge = 5
         self.last_recharge = time.time()
         self.munition = 10
+        self.direction = direction
                 
     def touch_by_missile(self, m):
-        if m.tireur == self or isinstance(m.tireur, Croiseur) or isinstance(m.tireur, porteavion.PorteAvion):
+        if m.tireur == self or m.tireur.__class__.__name__ == "Croiseur" or m.tireur.__class__.__name__ == "PorteAvion":
             return False
         else:
             return True
