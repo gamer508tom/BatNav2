@@ -14,7 +14,7 @@ from pirate import Pirate
 
 from missile import Missile
 
-PORT = 6552
+PORT = 55555
 
 
 pygame.mixer.init()
@@ -161,14 +161,14 @@ def update_map():
 		if player2.selection is not None and not player2.selection.alive():
 			player2.selection = None
 			
-		clock.tick(20)
+		clock.tick(10)
 
 upd_process = Thread(target=update_map)
 upd_process.start()	
 
 def main():
     server = ServerHandler()
-    server.connect("localhost",PORT)
+    server.connect("192.168.1.24",PORT)
     server.serve_forever()
     server.quit()
 

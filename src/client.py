@@ -13,8 +13,8 @@ while cont:
             break
 
 client = TCPClient()
-PORT = 6552
-client.connect("localhost",PORT)
+PORT = 55555
+client.connect("192.168.1.24",PORT)
 client.send_data(["add self"])
 
 
@@ -85,7 +85,7 @@ def Draw():
             draw_group.draw(screen)
             #print "draw"
         pygame.display.flip()
-        clock.tick(20)
+        clock.tick(10)
 
 from threading import Thread
 

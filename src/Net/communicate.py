@@ -11,7 +11,11 @@ def EncodeData(data,compress):
     length = ("0"*(8-len(length)))+length
     return length,data
 def DecodeData(data):
-    data = pickle.loads(data)
+    try:
+        data = pickle.loads(data)
+    except:
+        data = []
+        print "Warnind Decode data communicate"
     #except:data = pickle.loads(zlib.decompress(data))
     return data
 def SendData(sock,data,compress,includelength=False,address=None):

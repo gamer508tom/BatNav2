@@ -16,13 +16,9 @@ class TCPServer():
     def connect(self,host,port):
         self.host = host
         self.port = port
-        try:
-            self.unconnected_socket = socket.socket()
-            self.unconnected_socket.bind((self.host,self.port))
-            self.unconnected_socket.listen(5)
-        except:
-            self.unconnected_socket.close()
-            raise ServerError("Only one instance of the server on port "+str(self.port)+" may run at one time!")
+        self.unconnected_socket = socket.socket()
+        self.unconnected_socket.bind((self.host,self.port))
+        self.unconnected_socket.listen(5)
         self.connect_func(self.unconnected_socket,self.host,self.port)
         self.connected_sockets = []
         self.socketaddresses = {}
