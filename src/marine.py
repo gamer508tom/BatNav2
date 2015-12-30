@@ -1,7 +1,6 @@
 import pygame
 import math
 import time
-
 class Marine(pygame.sprite.Sprite):
     def __init__(self, w, h, position):
         pygame.sprite.Sprite.__init__(self)
