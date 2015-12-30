@@ -117,7 +117,7 @@ upd_process = Thread(target=Draw)
 upd_process.start()
 
 def main():
-    global vue
+    global vue, client
     while True:
         try:
             while True:
