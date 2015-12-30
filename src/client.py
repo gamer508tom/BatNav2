@@ -10,7 +10,7 @@ from submersible import Submersible
 from explorateur import Explorateur
 from pirate import Pirate
 from missile import Missile
-
+from avion import Avion
 
 cont = True
 while cont:
