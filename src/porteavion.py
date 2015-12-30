@@ -6,8 +6,8 @@ from avion import Avion
 from missile import Missile
 
 class PorteAvion(Marine):
-    def __init__(self, w, h, position, direction=None):
-        self.image = pygame.image.load('../img/porteavion.jpg').convert()
+    def __init__(self, w, h, position):
+        self.image = pygame.image.load('../img/porteavion.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 5
         self.vitesse = 0.2

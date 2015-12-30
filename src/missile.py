@@ -2,10 +2,27 @@
 import pygame
 import math
 from marine import Marine
+pygame.mixer.init()
+avionshot = pygame.mixer.Sound("../sound/avionshot.wav")
+pygame.mixer.init()
+submersibleshot = pygame.mixer.Sound("../sound/submersibleshot.wav")
+pygame.mixer.init()
+bateaushot = pygame.mixer.Sound("../sound/bateaushot.wav")
 
 class Missile(Marine):
-    def __init__(self, w, h, position, direction, puissance=2, tireur=None):
-        self.image = pygame.image.load('../img/missile.png').convert()
+    def __init__(self, w, h, position, direction, puissance, tireur):
+        if tireur.__class__.__name__ == "Avion":
+            self.image = pygame.image.load("../img/missileavion.png").convert()
+            avionshot.play()
+        elif tireur.__class__.__name__ == "Croiseur":
+            self.image = pygame.image.load("../img/missilebateau.png").convert() 
+            bateaushot.play()
+        elif tireur.__class__.__name__ == "PorteAvion":
+            self.image = pygame.image.load("../img/missilebateau.png").convert()
+            bateaushot.play()
+        elif tireur.__class__.__name__ == "Submersible":
+            self.image = pygame.image.load("../img/missilesubmersible.png").convert()
+            submersibleshot.play()
         Marine.__init__(self, w, h, position)
         self.vitesse = 2.5
         self.discretion = 0

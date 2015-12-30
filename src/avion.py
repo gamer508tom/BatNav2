@@ -15,6 +15,7 @@ class Avion(Marine):
         self.puissance = 3
         self.recharge = 2
         self.time_recharge = 5
+        self.vie = 5
         self.last_recharge = time.time()
         self.munition = self.recharge
         self.flying = True

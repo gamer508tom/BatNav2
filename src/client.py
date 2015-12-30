@@ -17,6 +17,8 @@ PORT = 6552
 client.connect("localhost",PORT)
 client.send_data(["add self"])
 
+bg = pygame.image.load("../img/font.png")
+screen.blit(bg,(0,0))
 
 clock = pygame.time.Clock()
 w, h = (1600, 900)
@@ -70,7 +72,7 @@ draw_group = None
 def Draw():
     global vue, draw_group, vue_changed
     while True:
-        screen.fill((255, 255, 255))
+        screen.blit(bg,(0,0))
         #print "draw loop", vue, vue_changed, draw_group
         if vue is not None:
             if vue_changed:

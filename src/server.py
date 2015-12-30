@@ -16,6 +16,9 @@ from missile import Missile
 PORT = 6552
 
 
+pygame.mixer.init()
+boom = pygame.mixer.Sound ("../sound/boom.wav")
+
 clock = pygame.time.Clock()
 
 LEFT = 1
@@ -149,6 +152,7 @@ def update_map():
 				nav_killed, explosion = nav.receive_missile(m)
 				if nav_killed:
 					nav.kill()
+                    boom.play()
 				change["player1"] = change["player1"] or explosion
 				change["player2"] = change["player2"] or explosion
 		if player2.selection is not None and not player2.selection.alive():
@@ -168,3 +172,4 @@ def main():
 
 
 main()
+	

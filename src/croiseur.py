@@ -14,6 +14,7 @@ class Croiseur(Marine):
         self.puissance = 4
         self.recharge = 10
         self.time_recharge = 5
+        self.vie = 11
         self.last_recharge = time.time()
         self.munition = 10
         self.direction = direction
