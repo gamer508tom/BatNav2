@@ -124,10 +124,12 @@ def main():
                 GetInput()
                 Update()
                 #Draw()
-        except:            
-            client.quit()
-            client = TCPClient()
-            client.connect(HOST,PORT)
-            client.send_data(["add self"])
-
+        except:      
+            try:      
+                client.quit()
+                client = TCPClient()
+                client.connect(HOST,PORT)
+                client.send_data(["add self"])
+            except:
+                pass
 main()
