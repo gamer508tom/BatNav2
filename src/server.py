@@ -10,6 +10,7 @@ from croiseur import Croiseur
 from porteavion import PorteAvion
 from submersible import Submersible
 from explorateur import Explorateur
+from pirate import Pirate
 
 from missile import Missile
 
@@ -34,16 +35,18 @@ position = [100, 300]
 flotte = [{'type':Croiseur, 'position':[0, 50]},
 			{'type':Submersible, 'position':[0, 100]},
 			{'type':Explorateur, 'position':[0, 150]},
+            {'type':Pirate, 'position':[0, 300]},
 			{'type':PorteAvion, 'position':[0, 200]}]
 player1 = Player(name, color, position, flotte, w, h)
 
 
 name = 'player2'
 color = 'red'
-position = [1500, 300]
+position = [1400, 300]
 flotte = [{'type':Croiseur, 'position':[0, 50]},
 			{'type':Submersible, 'position':[0, 100]},
 			{'type':Explorateur, 'position':[0, 150]},
+            {'type':Pirate, 'position':[0, 300]},
 			{'type':PorteAvion, 'position':[0, 200]}]
 player2 = Player(name, color, position, flotte, w, h)
 
@@ -152,7 +155,7 @@ def update_map():
 				nav_killed, explosion = nav.receive_missile(m)
 				if nav_killed:
 					nav.kill()
-                    boom.play()
+					boom.play()
 				change["player1"] = change["player1"] or explosion
 				change["player2"] = change["player2"] or explosion
 		if player2.selection is not None and not player2.selection.alive():

@@ -17,8 +17,6 @@ PORT = 6552
 client.connect("localhost",PORT)
 client.send_data(["add self"])
 
-bg = pygame.image.load("../img/font.png")
-screen.blit(bg,(0,0))
 
 clock = pygame.time.Clock()
 w, h = (1600, 900)
@@ -28,6 +26,8 @@ RIGHT = 3
 
 screen = pygame.display.set_mode((w, h))
 
+bg = pygame.image.load("../img/font.png")
+screen.blit(bg,(0,0))
 
 vue = None
 sendingdata = [name]

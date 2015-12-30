@@ -10,7 +10,7 @@ pygame.mixer.init()
 bateaushot = pygame.mixer.Sound("../sound/bateaushot.wav")
 
 class Missile(Marine):
-    def __init__(self, w, h, position, direction, puissance, tireur):
+    def __init__(self, w, h, position, direction, puissance=2, tireur=None):
         if tireur.__class__.__name__ == "Avion":
             self.image = pygame.image.load("../img/missileavion.png").convert()
             avionshot.play()
@@ -23,6 +23,9 @@ class Missile(Marine):
         elif tireur.__class__.__name__ == "Submersible":
             self.image = pygame.image.load("../img/missilesubmersible.png").convert()
             submersibleshot.play()
+        else:
+            self.image = pygame.image.load("../img/missilebateau.png").convert() 
+            bateaushot.play()            
         Marine.__init__(self, w, h, position)
         self.vitesse = 2.5
         self.discretion = 0
