@@ -21,8 +21,10 @@ while cont:
             break
 
 client = TCPClient()
+HOST = "192.168.1.24"
 PORT = 55555
-client.connect("192.168.1.24",PORT)
+
+client.connect(HOST,PORT)
 client.send_data(["add self"])
 
 
@@ -117,7 +119,15 @@ upd_process.start()
 def main():
     global vue
     while True:
-        GetInput()
-        Update()
-        #Draw()
+        try:
+            while True:
+                GetInput()
+                Update()
+                #Draw()
+        except:            
+            client.quit()
+            client = TCPClient()
+            client.connect(HOST,PORT)
+            client.send_data(["add self"])
+
 main()

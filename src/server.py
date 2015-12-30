@@ -14,6 +14,8 @@ from pirate import Pirate
 
 from missile import Missile
 
+
+HOST = "192.168.1.24"
 PORT = 55555
 
 
@@ -167,11 +169,17 @@ upd_process = Thread(target=update_map)
 upd_process.start()	
 
 def main():
-    server = ServerHandler()
-    server.connect("192.168.1.24",PORT)
-    server.serve_forever()
+    while True:
+        try:
+            server = ServerHandler()
+            server.connect(HOST,PORT)
+            server.serve_forever()
+        except:
+            try:
+                server.quit()
+            except:
+                pass
     server.quit()
-
 
 
 main()
