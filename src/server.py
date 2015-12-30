@@ -108,7 +108,7 @@ class ServerHandler(TCPServer):
 			self.send_data(adapt_to_socket(map_objects))
 			print "send_data because received", data
 		else:
-			if change[data[0]]:
+			if len(data) > 0 and change[data[0]]:
 				change[data[0]] = False
 				map_objects = pygame.sprite.Group()
 				map_objects.add(missiles)
