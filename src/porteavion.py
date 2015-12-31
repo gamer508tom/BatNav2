@@ -35,7 +35,10 @@ class PorteAvion(Marine):
     def launch(self):
         if self.n_avions > 0:
             self.n_avions = self.n_avions - 1
-            avion = Avion(self.w, self.h, [self.rect[0] + 140, self.rect[1] + 10], [1., 0.])
+            if self.color == "bleu":
+                avion = Avion(self.w, self.h, [self.rect.centerx + 80, self.rect.centery], [1., 0.], self.color)
+            elif self.color == "rouge":
+                avion = Avion(self.w, self.h, [self.rect.centerx - 80, self.rect.centery], [-1., 0.], self.color)
             for g in self.groups():
                 g.add(avion)
                 self.avion = avion
