@@ -164,6 +164,24 @@ def update_map():
 				change["player2"] = change["player2"] or explosion
 		if player2.selection is not None and not player2.selection.alive():
 			player2.selection = None
+            
+		# PIRATE
+		d = pygame.sprite.groupcollide(player1, player2, False, False)
+		for nav in d.keys():
+			for nav2 in d[nav]:
+				if (nav.__class__.__name__ == "Pirate") and not (nav2.__class__.__name__ == "Pirate"):
+					player1.add(nav2)
+					player2.remove(nav2)
+					if player2.selection == nav2:
+						player2.selection = None
+				elif not (nav.__class__.__name__ == "Pirate") and (nav2.__class__.__name__ == "Pirate"):
+					player2.add(nav)
+					player1.remove(nav)
+					if player1.selection == nav:
+						player1.selection = None
+				change["player1"] = change["player1"]
+				change["player2"] = change["player2"]
+        
 			
 		clock.tick(20)
 

@@ -7,7 +7,7 @@ class Pirate(Marine):
         self.image = pygame.image.load('../img/pirate.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 5
-        self.vitesse = 0.3
+        self.vitesse = 0.6
         self.discretion = 0
         self.puissance = 0
         self.vie = 1
