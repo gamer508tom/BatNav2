@@ -163,7 +163,7 @@ def update_map():
 		if player2.selection is not None and not player2.selection.alive():
 			player2.selection = None
 			
-		clock.tick(10)
+		clock.tick(20)
 
 upd_process = Thread(target=update_map)
 upd_process.start()	

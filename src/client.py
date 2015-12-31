@@ -109,7 +109,7 @@ def Draw():
             draw_group.draw(screen)
             #print "draw"
         pygame.display.flip()
-        clock.tick(10)
+        clock.tick(20)
 
 from threading import Thread
 
