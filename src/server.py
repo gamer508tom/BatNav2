@@ -32,26 +32,27 @@ w, h = (1600, 900)
 screen = pygame.display.set_mode((w, h))
 
 name = 'player1'
-color = 'blue'
 position = [100, 300]
 flotte = [{'type':Croiseur, 'position':[0, 50]},
 			{'type':Submersible, 'position':[0, 100]},
-			{'type':Explorateur, 'position':[0, 150]},
+			#{'type':Explorateur, 'position':[0, 150]},
             {'type':Pirate, 'position':[0, 300]},
 			{'type':PorteAvion, 'position':[0, 200]}]
-player1 = Player(name, color, position, flotte, w, h)
+player1 = Player(name, "bleu", position, flotte, w, h)
+for s in player1:
+    s.update_color("bleu")
 
 
 name = 'player2'
-color = 'red'
 position = [1400, 300]
 flotte = [{'type':Croiseur, 'position':[0, 50]},
 			{'type':Submersible, 'position':[0, 100]},
-			{'type':Explorateur, 'position':[0, 150]},
+			#{'type':Explorateur, 'position':[0, 150]},
             {'type':Pirate, 'position':[0, 300]},
 			{'type':PorteAvion, 'position':[0, 200]}]
-player2 = Player(name, color, position, flotte, w, h)
-
+player2 = Player(name, "rouge", position, flotte, w, h)
+for s in player2:
+    s.update_color("rouge")
 
 missiles = pygame.sprite.Group()
 
@@ -69,7 +70,7 @@ def adapt_to_socket(group):
 	for i in group:
 		#print i
 		i.image = None
-	return [(i.__class__.__name__, i.rect, i.direction) for i in group]
+	return [(i.__class__.__name__, i.rect, i.direction, i.color) for i in group]
 
 change = dict(player1=False, 
 				player2 = False)
@@ -172,11 +173,13 @@ def update_map():
 				if (nav.__class__.__name__ == "Pirate") and not (nav2.__class__.__name__ == "Pirate"):
 					player1.add(nav2)
 					player2.remove(nav2)
+					nav2.update_color("bleu")
 					if player2.selection == nav2:
 						player2.selection = None
 				elif not (nav.__class__.__name__ == "Pirate") and (nav2.__class__.__name__ == "Pirate"):
 					player2.add(nav)
 					player1.remove(nav)
+					nav.update_color("rouge")
 					if player1.selection == nav:
 						player1.selection = None
 				change["player1"] = change["player1"]

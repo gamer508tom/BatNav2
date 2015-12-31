@@ -2,8 +2,9 @@ import pygame
 import math
 import time
 class Marine(pygame.sprite.Sprite):
-    def __init__(self, w, h, position):
+    def __init__(self, w, h, position, color=None):
         pygame.sprite.Sprite.__init__(self)
+        self.color = None
         self.w = w
         self.h = h
         self.rect = self.image.get_rect()
@@ -65,3 +66,8 @@ class Marine(pygame.sprite.Sprite):
             return True
         else:
             return False
+            
+    def update_color(self, color):
+        if color is not None:
+            self.image = pygame.image.load('../img/' + self.name + color + '.png').convert()
+            self.color = color

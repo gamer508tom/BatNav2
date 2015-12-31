@@ -89,7 +89,7 @@ def Draw():
                 vue_changed = False
                 print "-----------re build vue", vue_changed
                 draw_group = pygame.sprite.Group()
-                for cls_name, rect, direction in vue:
+                for cls_name, rect, direction, color in vue:
                     if cls_name == "Avion":
                         cls = Avion
                     elif cls_name == "Croiseur":
@@ -104,7 +104,7 @@ def Draw():
                         cls = Missile
                     elif cls_name == "Pirate":
                         cls = Pirate
-                    draw_group.add(cls(w, h, [rect[0], rect[1]], direction))
+                    draw_group.add(cls(w, h, [rect[0], rect[1]], direction, color))
             draw_group.update()
             draw_group.draw(screen)
             #print "draw"

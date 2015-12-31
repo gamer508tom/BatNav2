@@ -6,9 +6,10 @@ from missile import Missile
 from submersible import Submersible
 
 class Avion(Marine):
-    def __init__(self, w, h, position, direction=None):
+    def __init__(self, w, h, position, direction=None, color=None):
         self.image = pygame.image.load('../img/avion.png').convert()
         Marine.__init__(self, w, h, position)
+        self.name = 'avion'
         self.vision = 20
         self.vitesse = 4.
         self.discretion = 0
@@ -20,6 +21,7 @@ class Avion(Marine):
         self.munition = self.recharge
         self.flying = True
         self.direction = direction
+        self.update_color(color)
 
     def do_recharge(self):
         if self.puissance > 0 and self.munition < self.recharge and time.time() - self.last_recharge > self.time_recharge:
