@@ -28,6 +28,7 @@ class PorteAvion(Marine):
         Marine.update(self)
         if self.avion is not None:
             if self.avion.rect.colliderect(self.rect):
+                print "avion kill"
                 self.avion.kill()
                 self.avion = None
                 self.n_avions = self.n_avions + 1
@@ -36,12 +37,12 @@ class PorteAvion(Marine):
         print "launch"
         if self.n_avions > 0:
             self.n_avions = self.n_avions - 1
-            print self.color
+            print "color:", self.color
             if self.color == "bleu":
                 avion = Avion(self.w, self.h, [self.rect.centerx + 80, self.rect.centery - 5], [1., 0.], self.color)
             elif self.color == "rouge":
-                avion = Avion(self.w, self.h, [self.rect.centerx - 200, self.rect.centery] - 5, [-1., 0.], self.color)
-            print avion
+                avion = Avion(self.w, self.h, [self.rect.centerx - 200, self.rect.centery - 5], [-1., 0.], self.color)
+            print "avion:", avion
             for g in self.groups():
                 g.add(avion)
                 self.avion = avion
