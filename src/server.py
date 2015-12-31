@@ -106,8 +106,8 @@ class ServerHandler(TCPServer):
 				#print "sprite player", s, s.rect, s.direction
 			#print "send_data because received", data
 			self.send_data(adapt_to_socket(map_objects))
-            change["player1"] = False
-            change["player2"] = False
+			change["player1"] = True
+			change["player2"] = True
 		elif len(data) > 0 and data[0] == "add self":
 			self.send_data(adapt_to_socket(map_objects))
 			print "send_data because received", data

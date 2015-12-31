@@ -10,7 +10,7 @@ class Marine(pygame.sprite.Sprite):
         self.state = "still"
         self.direction = None
         self.vie = 10
-        self.vitesse = 1.
+        self.vitesse = 2.
         self.rect = self.rect.move(position)
         self.offset = [0., 0.]
 

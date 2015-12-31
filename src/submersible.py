@@ -9,7 +9,7 @@ class Submersible(Marine):
         self.image = pygame.image.load('../img/submersible.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 6
-        self.vitesse = 0.3
+        self.vitesse = 0.6
         self.discretion = 0
         self.puissance = 3
         self.recharge = 10

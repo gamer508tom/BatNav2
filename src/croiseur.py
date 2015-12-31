@@ -9,7 +9,7 @@ class Croiseur(Marine):
         self.image = pygame.image.load('../img/croiseur.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 6
-        self.vitesse = 0.5
+        self.vitesse = 1.
         self.discretion = 0
         self.puissance = 4
         self.recharge = 10

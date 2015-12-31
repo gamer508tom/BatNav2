@@ -27,7 +27,7 @@ class Missile(Marine):
             self.image = pygame.image.load("../img/missilebateau.png").convert() 
             bateaushot.play()            
         Marine.__init__(self, w, h, position)
-        self.vitesse = 2.5
+        self.vitesse = 5.
         self.discretion = 0
         self.puissance = puissance
         self.change_direction(direction[0], direction[1])

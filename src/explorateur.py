@@ -7,7 +7,7 @@ class Explorateur(Marine):
         self.image = pygame.image.load('../img/explorateur.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 10
-        self.vitesse = 1.5
+        self.vitesse = 3.
         self.discretion = 0
         self.puissance = 0
         self.direction = direction

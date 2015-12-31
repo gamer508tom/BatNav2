@@ -10,7 +10,7 @@ class Avion(Marine):
         self.image = pygame.image.load('../img/avion.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 20
-        self.vitesse = 2
+        self.vitesse = 4.
         self.discretion = 0
         self.puissance = 3
         self.recharge = 2

@@ -10,7 +10,7 @@ class PorteAvion(Marine):
         self.image = pygame.image.load('../img/porteavion.png').convert()
         Marine.__init__(self, w, h, position)
         self.vision = 5
-        self.vitesse = 0.2
+        self.vitesse = 0.4
         self.discretion = 0
         self.puissance = 2
         self.recharge = 10
