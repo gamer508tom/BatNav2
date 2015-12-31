@@ -53,6 +53,8 @@ flotte = [{'type':Croiseur, 'position':[0, 50]},
 player2 = Player(name, "rouge", position, flotte, w, h)
 for s in player2:
     s.update_color("rouge")
+    print s, s.color
+
 
 missiles = pygame.sprite.Group()
 
