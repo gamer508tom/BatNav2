@@ -15,7 +15,7 @@ from pirate import Pirate
 from missile import Missile
 
 
-HOST = "192.168.1.24"
+HOST = "192.168.1.28"
 PORT = 55555
 
 

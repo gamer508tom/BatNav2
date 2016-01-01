@@ -21,7 +21,7 @@ while cont:
             break
 
 client = TCPClient()
-HOST = "192.168.1.24"
+HOST = "192.168.1.28"
 PORT = 55555
 
 client.connect(HOST,PORT)
