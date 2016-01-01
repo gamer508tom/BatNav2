@@ -43,11 +43,20 @@ class Missile(Marine):
         else:     
             self.color = color
             if color == "air":
-                self.image = pygame.image.load("../img/missileavion.png").convert()
+                if direction[0] > 0:
+                    self.image = pygame.image.load("../img/missileavion.png").convert()
+                else:
+                    self.image = pygame.image.load("../img/missileavion2.png").convert() 
             elif color == "sol":
-                self.image = pygame.image.load("../img/missilebateau.png").convert() 
+                if direction[0] > 0:
+                    self.image = pygame.image.load("../img/missilebateau.png").convert()
+                else:
+                    self.image = pygame.image.load("../img/missilebateau2.png").convert()
             elif color == "eau":
-                self.image = pygame.image.load("../img/missilesubmersible.png").convert()
+                if direction[0] > 0:
+                    self.image = pygame.image.load("../img/missilesubmersible.png").convert()
+                else:
+                    self.image = pygame.image.load("../img/missilesubmersible2.png").convert()
                 
         Marine.__init__(self, w, h, position, self.color)
         self.vitesse = 5.
