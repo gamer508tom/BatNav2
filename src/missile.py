@@ -13,19 +13,31 @@ class Missile(Marine):
     def __init__(self, w, h, position, direction, color=None, puissance=2, tireur=None):
         print color, tireur.__class__.__name__ 
         if tireur.__class__.__name__ == "Avion":
-            self.image = pygame.image.load("../img/missileavion.png").convert()
+            if direction[0] > 0:
+                self.image = pygame.image.load("../img/missileavion.png").convert()
+            else:
+                self.image = pygame.image.load("../img/missileavion2.png").convert()                
             avionshot.play()    
             self.color = "air"
         elif tireur.__class__.__name__ == "Croiseur":
-            self.image = pygame.image.load("../img/missilebateau.png").convert() 
+            if direction[0] > 0:
+                self.image = pygame.image.load("../img/missilebateau.png").convert()
+            else:
+                self.image = pygame.image.load("../img/missilebateau2.png").convert()
             bateaushot.play()  
             self.color = "sol"
         elif tireur.__class__.__name__ == "PorteAvion":
-            self.image = pygame.image.load("../img/missilebateau.png").convert()
+            if direction[0] > 0:
+                self.image = pygame.image.load("../img/missilebateau.png").convert()
+            else:
+                self.image = pygame.image.load("../img/missilebateau2.png").convert()
             bateaushot.play() 
             self.color = "sol"
         elif tireur.__class__.__name__ == "Submersible":
-            self.image = pygame.image.load("../img/missilesubmersible.png").convert()
+            if direction[0] > 0:
+                self.image = pygame.image.load("../img/missilesubmersible.png").convert()
+            else:
+                self.image = pygame.image.load("../img/missilesubmersible2.png").convert()
             submersibleshot.play() 
             self.color = "eau"
         else:     
