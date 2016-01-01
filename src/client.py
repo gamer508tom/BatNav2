@@ -104,6 +104,7 @@ def Draw():
                         cls = Missile
                     elif cls_name == "Pirate":
                         cls = Pirate
+                    print "client", color
                     draw_group.add(cls(w, h, [rect[0], rect[1]], direction, color))
             draw_group.update()
             draw_group.draw(screen)

@@ -4,7 +4,7 @@ import time
 class Marine(pygame.sprite.Sprite):
     def __init__(self, w, h, position, color=None):
         pygame.sprite.Sprite.__init__(self)
-        self.color = None
+        self.color = color
         self.w = w
         self.h = h
         self.rect = self.image.get_rect()

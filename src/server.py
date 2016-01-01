@@ -103,10 +103,10 @@ class ServerHandler(TCPServer):
 			map_objects.add(missiles)
 			map_objects.add(player1)
 			map_objects.add(player2)
-			#print
-			#print "send those objects:"
-			#for s in map_objects:
-				#print "sprite player", s, s.rect, s.direction
+			print
+			print "send those objects:"
+			for s in map_objects:
+				print "sprite player", s, s.rect, s.direction, s.color
 			#print "send_data because received", data
 			self.send_data(adapt_to_socket(map_objects))
 			change["player1"] = True

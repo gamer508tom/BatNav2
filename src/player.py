@@ -38,6 +38,7 @@ class Player(pygame.sprite.Group):
                     dy = pos[1] - boat_pos.centery
                     direction = [dx, dy]
                     missile = boat.create_missile(direction)
+                    print "player missile", missile.color
                     missiles.add(missile)
         
     def right_click(self, pos):

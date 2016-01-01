@@ -10,28 +10,39 @@ pygame.mixer.init()
 bateaushot = pygame.mixer.Sound("../sound/bateaushot.wav")
 
 class Missile(Marine):
-    def __init__(self, w, h, position, direction, puissance=2, tireur=None):
+    def __init__(self, w, h, position, direction, color=None, puissance=2, tireur=None):
+        print color, tireur.__class__.__name__ 
         if tireur.__class__.__name__ == "Avion":
             self.image = pygame.image.load("../img/missileavion.png").convert()
-            avionshot.play()
+            avionshot.play()    
+            self.color = "air"
         elif tireur.__class__.__name__ == "Croiseur":
             self.image = pygame.image.load("../img/missilebateau.png").convert() 
-            bateaushot.play()
+            bateaushot.play()  
+            self.color = "sol"
         elif tireur.__class__.__name__ == "PorteAvion":
             self.image = pygame.image.load("../img/missilebateau.png").convert()
-            bateaushot.play()
+            bateaushot.play() 
+            self.color = "sol"
         elif tireur.__class__.__name__ == "Submersible":
             self.image = pygame.image.load("../img/missilesubmersible.png").convert()
-            submersibleshot.play()
-        else:
-            self.image = pygame.image.load("../img/missilebateau.png").convert() 
-            bateaushot.play()            
-        Marine.__init__(self, w, h, position)
+            submersibleshot.play() 
+            self.color = "eau"
+        else:     
+            self.color = color
+            if color == "air":
+                self.image = pygame.image.load("../img/missileavion.png").convert()
+            elif color == "sol":
+                self.image = pygame.image.load("../img/missilebateau.png").convert() 
+            elif color == "eau":
+                self.image = pygame.image.load("../img/missilesubmersible.png").convert()
+                
+        Marine.__init__(self, w, h, position, self.color)
         self.vitesse = 5.
         self.discretion = 0
         self.puissance = puissance
         self.change_direction(direction[0], direction[1])
-        self.tireur = tireur
+        self.tireur = tireur   
 
     def update(self):
         if self.direction is not None:

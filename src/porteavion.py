@@ -59,4 +59,4 @@ class PorteAvion(Marine):
             return True
             
     def create_missile(self, direction):        
-        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, self.puissance, self)
+        return Missile(self.w, self.h, [self.rect.centerx, self.rect.centery], direction, puissance=self.puissance, tireur=self)
